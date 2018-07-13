@@ -1,0 +1,230 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+#main{
+    width: 1280px;
+    height: 1780px;
+    background: #fff;
+    margin: 0 auto;
+}
+.skip{
+    width: 100%;
+    height: 60px;
+}
+.skip > li{
+    float: left;
+    padding: 0 5px;
+    line-height: 60px;
+}
+.skip > li > a{
+    color: #333;
+}
+.particulars_left{
+    width: 1000px;
+    height: 700px;
+    background: #fff;
+    float: left;
+    position: relative;
+}
+.projection{
+    width: 480px;
+    height: 480px;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    display: none;
+}
+.projection > img {
+    width: 800px;
+    height: 800px;
+    position: relative;
+}
+.middle{
+    width: 400px;
+    height: 400px;
+    background: #fff;
+    float: left;
+    position: relative;
+}
+.middle > img{
+    width: 400px;
+    height: 400px;
+}
+.indirect{
+    width: 240px;
+    height: 240px;
+    background: #666;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .1;
+    display: none;
+    cursor: move;
+}
+.buy{
+    width: 400px;
+    height: 640px;
+    background: #fff;
+    float:right;
+}
+.buy_title{
+    color: #333;
+    font-size: 30px;
+    line-height: 50px;
+}
+.price{
+    font-size: 24px;
+    color: #333;
+}
+.sequence{
+    font-size: 12px;
+    color: #666;
+}
+.design{
+    width: 60px;
+    height: 60px;
+    padding: 10px 0;
+    /* line-height: 70px; */
+}
+.design > img{
+    width: 60px;
+    height: 60px;
+}
+.design_color{
+    line-height: 40px;
+    color: #333;
+    font-size: 12px;
+}
+.size_box{
+    width: 350px;
+    height: 120px;
+}
+.size_box >li{
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    background: #eaeaea;
+    text-align: center;
+    line-height: 40px;
+    float: left;
+    margin: 10px;
+}
+.size_box >li:hover{
+    background: #ff0000;
+    color: #ffff;
+}
+.size_box > .bgd{
+    background: #ff0000;
+    color: #fff;
+}
+.count{
+    width: 350px;
+    height: 200px;
+    background: #fff;
+
+}
+.count_title{
+    color: #666;
+}
+.count > p:nth-child(2){
+    width: 100%;
+    padding-bottom: 30px;
+}
+.count > p > button{
+    background: #ff0000;
+    border: 0;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+}
+.count > p > input{
+    text-align: center;
+    background: #eaeaea;
+    width: 80px;
+    border: 0;
+    height: 28px;
+    outline: 0;
+}
+.addition{
+    text-align: center;
+    line-height: 44px;
+    display: block;
+    width: 200px;
+    height: 44px;
+    color: #fff;
+    background: #ff0000;
+}
+.addition:hover{
+    background: #000;
+    color: #fff;
+}
+.small_box{
+    margin-top: 20px;
+    width: 520px;
+    height: 100px;
+    background: #fff;
+    float: left;
+}
+.small_img_box > li{
+    border: 1px solid #ccc;
+    width: 101px;
+    height: 101px;
+    background: #fff;
+    float: left;
+    margin: 0 13px;
+    cursor: pointer;
+}
+.small_img_box > li > img{
+    width: 100px;
+    height: 100px;
+}
+.particulars_right{
+    width: 242px;
+    height: 640px;
+    background: #fff;
+    float: right;
+}
+.particulars_right-title{
+    width: 180px;
+    height: 50px;
+    background: #999;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+}
+.likely{
+    width: 240px;
+    height: 186px;
+    background: #fff;
+    margin: 10px 0;
+    border:1px solid #f1f1f1;
+}
+.likely > img {
+    width: 100%;
+    height: 100%;
+}
+.regard{
+    width: 100%;
+    height: 1000px;
+    background: #f1f1f1;
+    float: left;
+}
+.regard > h1{
+    font-size: 100px;
+    text-align: center;
+}

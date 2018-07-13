@@ -1,0 +1,172 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="PUMA_top.css"/>
+<div class="head_base"><!------------------头部-->
+    <div class="head">
+        <ul>
+            <li><a href="##">中国 <b>China</b> ↓</a></li>
+            <li><a href="PUMA_enroll.html">注册</a></li>
+            <li><a href="PUMA_register.html">登录</a></li>
+            <li><a href="##">帮助中心</a></li>
+            <li><a href="##">订阅电子邮件</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="nav_base"><!------------------导航-->
+    <div class="nav">
+        <ul class="nav_left">
+            <a href="PUMA_homepage.html" id="logo"><img src="img/logo.png"/></a>
+            <li><a href="##">男子</a></li>
+            <li><a href="##">女子</a></li>
+            <li><a href="##">儿童</a></li>
+            <li><a href="##">运动</a></li>
+            <li><a href="##">SELECT</a></li>
+            <li><a href="##">新品</a></li>
+            <li><a href="##">季后清仓</a></li>
+        </ul>
+        
+        <ul class="nav_right">
+            <li><a href="PUMA_trolley.html"><span style="margin:10px;">购物车</span><img src="img/shopping.png" style="width: 28px; height: 40px;"/></a></li>
+            <li>
+                <p id="seek_box">
+                <input type="text" id="seek" placeholder="我要查找..."/>
+                <button type="submit" id="to_seek">搜索</button>
+                </p>
+                
+            </li>
+            <li><a href="##"><span style="margin:10px;">在线客服</span><img src="img/refer.png" style="width: 30px;height: 26px; margin-top: 5px;"/></a></li>
+        </ul>
+    </div>
+    <div id="menu_box">
+            <div class="menu">
+                <h2>鞋类</h2>
+                <p class="list1">
+                </p>
+            </div>
+        
+            <div class="menu">
+                    <h2>服饰</h2>
+                    <p>
+                       <a href=""><img src="menu_clothing/menu_clothing1.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing2.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing3.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing4.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing5.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing6.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing7.png"/></a>
+                       <a href=""><img src="menu_clothing/menu_clothing8.png"/></a>
+                    </p>
+            </div>
+        
+            <div class="menu">
+                    <h2>服饰</h2>
+                    <p>
+                       <a href=""><img src="menu_knapsack/menu_knapsack1.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack2.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack3.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack4.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack5.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack6.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack7.png"/></a>
+                       <a href=""><img src="menu_knapsack/menu_knapsack8.png"/></a>
+                    </p>
+            </div>
+        
+            <div class="menu">
+                    <h2>儿童</h2>
+                    <p>
+                       <a href=""><img src="menu_child/menu_child1.png"/></a>
+                       <a href=""><img src="menu_child/menu_child2.png"/></a>
+                       <a href=""><img src="menu_child/menu_child3.png"/></a>
+                       <a href=""><img src="menu_child/menu_child4.png"/></a>
+                       <a href=""><img src="menu_child/menu_child5.png"/></a>
+                       <a href=""><img src="menu_child/menu_child6.png"/></a>
+                       <a href=""><img src="menu_child/menu_child7.png"/></a>
+                       <a href=""><img src="menu_child/menu_child8.png"/></a>
+                    </p>
+            </div>
+            <div class="shut">点击关闭</div>
+        </div>
+</div>
+
+<div class="inform_bace"><!------------------通知-->
+    <div class="inform">
+        <div class="roll">
+            <p>欢迎来到PUMA中国官方商城 即日起至7月3日 任意消费享全场包邮。</p>
+            <p>因国家税务总局规定，从2018年5月1日起开具的增值税发票税率将调至16%，您可在订单付款时勾选发票（个人或企业），发货七天后在历史订单中下载。</p>
+            <p>新疆及西藏地区默认仅发EMS，目前无法提供更改及转寄服务。给您带来不便敬请谅解！</p>				
+            <p>因系统维护，5月28日起将不可使用银联支付，恢复时间待通知，给您带来不便敬请谅解。</p>
+        </div>
+        </div>
+</div>
+    <!-- <div class="get_Roof">
+
+    </div> -->
+<script src="jquery.js"></script>
+<script>
+    
+    $(function(){//-------------------------上下滚动通知
+		var num=0;
+		setInterval(function(){
+			num++;
+			if(num==4){
+				$('.roll').css({'top':'0px'});
+				num=0;
+			}
+			$('.roll').stop().animate({'top':-40*num+'px'},200);
+		},3000)
+	})
+    var $nav_left = $('.nav_left');
+    var $menu_box = $('#menu_box');   
+    $nav_left.on('mouseover',function(ev){ //------------鼠标划过二级菜单显示
+        ev = ev || event;
+        var $target = ev.target || ev.srcElement;
+　　　 　if($target.nodeName == 'A'){
+    　 　　　　　$menu_box.css('display','block');
+　　　　}
+    })
+    var $shut = $('.shut');//---------------点击按钮二级菜单关闭
+    $shut.click(function(){
+        $menu_box.css('display','none');
+    })
+
+    //---------------------------获取数据
+
+    //-----------------设置cookie
+    function setCookie(_name,val,expires){
+		var d = new Date();
+		d.setDate(d.getDate()+expires);
+		document.cookie = _name+"="+val+";path=/;expires="+d;
+	}
+    //-------------------获取数据渲染列表页面
+    var apply = (function(){
+        var $list1 = $('.list1');
+        var params = {
+            id : 8,
+        }
+        $.post('php/PUMA_top.php',params,getBack,'json');
+
+        function getBack(json){
+            if(json.code == 200){   
+                var data = json.data;
+                for(var j = 0; j < data.length; j++){
+                    var src ='';
+                    src+=`
+                    <a href="PUMA_details.html" data-id=${data[0][0]}><img src=${data[0][1]} /></a>
+                    <a href="PUMA_details.html" data-id=${data[1][0]}><img src=${data[1][1]} /></a>
+                    <a href="PUMA_details.html" data-id=${data[2][0]}><img src=${data[2][1]} /></a>
+                    <a href="PUMA_details.html" data-id=${data[3][0]}><img src=${data[3][1]} /></a>
+                    `; 
+                }
+                $list1.html(src); 
+
+                $list1.on('click','a',function(){
+                    var id = $(this).attr('data-id');
+                    setCookie('init',id,7);
+                }) 
+            }else{
+                alert(json.msg);
+            }
+	}
+    })()
+</script>

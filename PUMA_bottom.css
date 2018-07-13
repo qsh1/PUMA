@@ -1,0 +1,185 @@
+body{
+	width: 100%;
+	height: 100%;
+	background: #fff;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+#bottom{
+	width: 1280px;
+	height: 580px;
+	margin: 0 auto;
+	background: #fff;
+}
+#annex{
+	width: 1080px;
+	height: 180px;
+	margin: 0 auto;
+	border-top:1px dashed #ccc;
+	border-bottom:1px dashed #ccc;
+	padding: 20px;
+}
+#annex_left{
+	width: 539px;
+	height: 180px;
+	float: left;
+	background: #ffff;
+	border-right: 1px solid #ff0000;
+}
+#annex_left > img{
+	float: left;
+	margin: 40px;
+}
+#post_box{
+	float: left;
+	margin: 60px -10px;
+}
+#post_box > li:nth-child(1){
+	font-size: 14px;
+	color: #333;
+}
+#post_box > li > input{
+	width: 160px;
+	height: 24px;
+	background: #cccc;
+	border: 1px solid #333;
+}
+#post_box > li > a {
+	margin-top: 2px;
+	margin-left: -5px;
+	display: inline-block;
+	width: 30px;
+	height: 26px;
+	background: #ff0000;
+}
+#annex_right{
+	float: right;
+	background: #fff;
+	width: 540px;
+	height: 180px;
+}
+#annex_right > img{
+	float: right;
+	margin: 40px;
+}
+#entity_box{
+	float: right;
+	margin: 60px -10px;
+}
+#entity_box > li:nth-child(1){
+	font-size: 14px;
+	color: #333;
+}
+#entity_box > li > a{
+	display: block;
+	width: 160px;
+	height: 26px;
+	background: #ff0000;
+	padding: 0 20px;
+	font-size: 14px;
+	line-height: 26px;
+	color: #fff;
+}
+#rests_box{
+	width: 1080px;
+	height: 300px;
+	background: #fff;
+	margin: 0 auto;
+}
+#rests_1{
+	float: left;
+	margin: 40px;
+}
+#rests_1 li {
+	font-size: 12px;
+	color: #ccc;
+	line-height: 30px;
+	
+}
+#rests_2{
+	float: left;
+	font-size: 12px;
+	margin: 40px;
+}
+#rests_2 > li{
+	color: #ccc;
+}
+#rests_2 > li > a{
+	color: #000;
+}
+#rests_2 > li > a:hover{
+	color: #ff0000;
+}
+#rests_3{
+	float: left;
+	font-size: 12px;
+	margin: 40px;
+}
+#rests_3 > li{
+	color: #ccc;
+}
+#rests_3 > li > a{
+	color: #000;
+}
+#rests_3 > li > a:hover{
+	color: #ff0000;
+}
+#rests_4{
+	float: left;
+	font-size: 12px;
+	margin: 40px;
+}
+#rests_4 > li > a{
+	color: #000;
+}
+#rests_4 > li > a:hover{
+	color: #ff0000;
+}
+#rests_5{
+	float: left;
+	font-size: 12px;
+	margin: 40px;
+
+}
+#rests_5 > li > a{
+	color: #000;
+}
+#rests_5 > li > a:hover{
+	color: #ff0000;
+}
+#tail{
+	width:100%;
+	height: 580px;
+	background: #ccc;
+}
+#introduction{
+	padding: 40px;
+	width:820px;
+	height: 440px;
+	background: #ccc;
+	margin: 0 auto;
+	font-size: 12px;
+	line-height: 20px;
+}
+#introduction > span{
+	color: #ff0000;
+}
+#introduction > p{
+	margin-top: 12px;
+}
+#record{
+	width:100%;
+	height: 200px;
+	text-align: center;
+}
+#record > span{
+	font-size: 12px;
+}

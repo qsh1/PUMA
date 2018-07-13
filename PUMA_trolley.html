@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="PUMA_trolley_main.css">
+</head>
+<body>
+        <div id="header"></div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+	        $("#header").load('PUMA_top.html');
+        </script>    
+
+
+    <div id="main">
+        <div class="main_title">
+            <h1>购 物 车</h1>
+            <a href="PUMA_homepage.html">继续购物</a>
+        </div>
+        <p class="total"><b>总价:<span>￥0.00</span></b></p>
+
+        <div class="account">
+            <table class="table_box">
+                <tr class="table_title">
+                    <td><input type="checkbox" id="possessAll"  style="width: 18px;height: 18px;cursor: pointer" ></td>
+                    <td colspan="2">商品</td>
+                    <td style="text-align: center">尺寸</td>
+                    <td>数量</td>
+                    <td>单价</td>
+                    <td>总价</td>
+                </tr>
+                <!-- <tr>
+                    <td><input type="checkbox" class="possess"></td>
+                    <td><img src="recommend5.png"></td>
+                    <td>
+                        <p class="explain">SUEDE Heart Valentine 儿童休闲鞋</p>
+                        <p class="serial">产品编号：111111111</p>
+                        <p class="product_color">颜色：黑</p>
+                        <p><a href="" class="delete">删除</a></p>
+                    </td>
+                    <td>28</td>
+                    <td>
+                        <button class="minus">-</button>
+                        <input type="text" class="result" value="1"/>
+                        <button class="plus">+</button>
+                    </td>
+                    <td class="one">￥100</td>
+                    <td class="sum">￥100</td>
+                </tr> -->
+                
+                <!-- ---------------------结账区块 -->
+                <tr class="aggregate">
+                    <td colspan="7" style="border: 0;">
+                        <a href="" class="pay">去结账</a>
+                </td>
+                   
+            </table>
+        </div>
+    </div>
+
+             <div id="stern"></div>
+            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+            <script type="text/javascript">
+                $("#stern").load('PUMA_bottom.html');
+            </script>
+    
+</body>
+</html>
+<script>
+    function getCookie(name){ //----------------获取cookie
+	    var cookie = document.cookie;
+	    var arr = cookie.split("; ");
+	    for(var i=0;i<arr.length;i++){
+	        var newArr = arr[i].split("=");
+	        if(name == newArr[0]){
+	            return newArr[1];
+	        }
+	    }
+	}
+
+            var $id = getCookie('init');
+            
+            var params = {
+                id : $id
+            }
+        $.post('php/PUMA_top.php',params,function(json){
+            
+            if(json.code == 200){
+                var $amount = Number(getCookie('amount'));
+                console.log($amount);
+                var data = json.data;
+                var $tr = $('<tr></tr>');
+                var str = '';
+                str+=`
+                        <td><input type="checkbox" class="possess"></td>
+                        <td><img src=${data.img1}></td>
+                        <td>
+                           <p class="explain">${data.English}${data.Chinese}</p>
+                           <p class="serial">产品编号：111111111</p>
+                           <p class="product_color">颜色：${data.colour}</p>
+                           <p><a href="" class="delete">删除</a></p>
+                        </td>
+                        <td>     </td>
+                        <td>
+                         <button class="minus">-</button>
+                         <input type="text" class="result" value=${$amount}>
+                         <button class="plus">+</button>
+                        </td>
+                        <td class="one">￥${data.money}</td>
+                        <td class="sum">￥${(data.money)*$amount}</td>
+                    `
+                    
+                    $tr.html(str);
+                    var $table_title = $('.table_title');
+                        $table_title.after($tr);
+            }else{
+                alert(2);
+            }
+        
+
+        var selectRemove = (function(){//------设置全反选  选中才可以点击删除
+            var $table_box = $('.table_box');
+            var $possessAll = $('#possessAll');
+            var $possess = $('.possess');
+            var $delete = $('.delete');
+            return {
+                init(){
+                    this.checkAll();
+                    this.pitchOut();
+                },
+                checkAll(){
+                    $possessAll.click(function(){
+                        var check =  $possessAll.prop('checked');
+                        $possess.each(function(index, item) {
+                            if(check) {
+                                $(item).prop('checked', true);
+                            } else {
+                                $(item).prop('checked', false);
+                            }
+                        })
+                    })
+                },
+                pitchOut(){
+                    //删除商品-------------------（未完成）
+                } 
+            }
+        })()
+        selectRemove.init();
+
+        var calculate = (function(){ //---------------------计算商品价格
+                var $minus = $('.minus');//减
+                var $plus = $('.plus');//加
+                var $result = $('.result');//文本框
+                return {
+                    init(){
+                        this.minusPlus();
+                    },
+                    minusPlus(){
+                        for(var i = 0; i < $minus.length; i++){
+                            $minus.eq(i).click(function(){
+                                var minus_next = $(this).next().val();
+                                if(minus_next != 1){
+                                    minus_next--;
+                                    $(this).next().val(minus_next);
+                                    var one = $(this).parent().next(".one").html().substr(1);
+                                    $(this).parent().next().next(".sum").html('￥' + minus_next * one);
+                                }
+                            })
+                            $plus.eq(i).click(function(){
+                                var plus_next = $(this).prev().val();
+                                plus_next++;
+                                $(this).prev().val(plus_next);
+                                var one = $(this).parent().next(".one").html().substr(1);
+                                $(this).parent().next().next(".sum").html('￥' + plus_next * one);
+                            })
+                            $result.eq(i).blur(function(){
+                                var one = $(this).parent().next(".one").html().substr(1);
+                                $(this).parent().next().next(".sum").html('￥' + $(this).val() * one);
+                            })
+                        }
+                    },
+                }
+        })()
+    calculate.init();
+    },'json');
+
+</script>

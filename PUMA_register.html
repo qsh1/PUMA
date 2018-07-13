@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="PUMA_register_main.css"/>
+	</head>
+	<body>
+			<div id="header"></div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+	        $("#header").load('PUMA_top.html');
+        </script>
+			
+			<div id="main"><!---------------------中间部分-->
+				<div class="title_box">
+					<h1>账号登录</h1>
+				</div>
+				
+				<div id="consume_box">
+					<div class="already1">
+						<h2>已有账号用户</h2>
+						<p>如果您是已注册会员，请登录。</p>
+						
+						<form action="" method="post">
+							<p><label><b>*</b></span>手机号码</label></p>
+							<p><input type="text" placeholder="输入登录手机号码" class="phone"/></p>
+							<p><span class="phone_hint"></span></p>
+							
+							<p style="margin-top: 30px;"><label><b>*</b></span>密码</label></p>
+							<p><input type="password" placeholder="输入密码" class="password"/></p>
+							<p><span class="password_hint"></span></p>
+							
+							<div>
+								<p><input type="checkbox" />同意登录协议 <a href="#">忘了密码?</a></p>			
+								<a href="#" class="enter">登录</a>
+							</div>
+						</form>
+					</div>
+					
+					<div class="already2">
+						<h2>创建您的账号</h2>
+						<p>创建一个新账号很简单，只需要填写以下表格，就可以享受拥有账号的好处。</p>
+						<p><a href="PUMA_enroll.html">创建您的账号</a></p>
+					</div>
+					
+					<div class="already3">
+						<h2>PUMA助您安全购买</h2>
+						<p>欢迎来到PUMA中国官方商城 即日起至7月3日 任意消费享全场包邮。</p>
+						<p>因国家税务总局规定，从2018年5月1日起开具的增值税发票税率将调至16%，您可在订单付款时勾选发票（个人或企业），发货七天后在历史订单中下载。</p>
+						<p>新疆及西藏地区默认仅发EMS，目前无法提供更改及转寄服务。给您带来不便敬请谅解！</p>				
+						<p>因系统维护，5月28日起将不可使用银联支付，恢复时间待通知，给您带来不便敬请谅解。</p>
+					</div>
+				</div>
+			</div>
+			
+			<div id="stern"></div>
+            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+            <script type="text/javascript">
+                $("#stern").load('PUMA_bottom.html');
+            </script>	
+	</body>
+</html>
+<script src="jquery.js"></script>
+<script>
+	var $phone = $('.phone');
+	var $password = $('.password');
+	var $enter = $('.enter');
+	//-------------------------------正则判断用户输入格式
+	$phone.on('blur',function(){
+		var reg = /^1[356789]\d{9}$/;
+		if(reg.test($phone.val())){
+			$('.phone_hint').html('输入的格式正确!');
+			$('.phone_hint').css('color','seagreen');
+			$phone.css('background','#ccc')
+		}else{
+			$('.phone_hint').html('输入的格式错误!');
+			$('.phone_hint').css('color','#ff0000');
+			$phone.css('background','salmon');
+		}
+	})
+
+	$password.on('blur',function(){
+		var reg = /^[A-Za-z]\w{10,16}/;
+		if(reg.test($password.val())){
+			$('.password_hint').html('输入的格式正确!');
+			$('.password_hint').css('color','seagreen');
+			$password.css('background','#ccc')
+		}else{
+			$('.password_hint').html('输入的格式错误!');
+			$('.password_hint').css('color','#ff0000');
+			$password.css('background','salmon');
+		}
+	})	
+
+	//----------------------------------获取数据 查看用户输入是否与数据相符
+	$enter.click(function(){
+		var params = {
+			phone : $phone.val(),
+			password : $password.val()
+		}
+		$.post('php/PUMA_register.php',params,getBack,'json');
+	})
+	function getBack(json){
+		if(json.code == 200){
+			location.href='PUMA_trolley.html';
+		}else{
+			alert(json.msg);
+		}
+	}
+</script>

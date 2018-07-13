@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="PUMA_details_main.css">
+</head>
+<body>
+        <div id="header"></div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+	        $("#header").load('PUMA_top.html');
+        </script>
+
+
+    <div id="main">
+       <ul class="skip">
+           <li><a href="">首页 /</a></li>
+           <li><a href="">男子 /</a></li>
+           <li><a href="">鞋 /</a></li>
+           <li><a href="" style="color: #ff0000;">SUEDE Classic Tonal 男女同款休闲鞋
+            </a></li>
+       </ul>
+       <div class="particulars_left">
+            <div class="projection"><!--------------放大区域（透明）-->
+                <img src=""/>
+            </div>
+
+           <div class="middle">
+                <img src="" /><!-------中图位置-->
+                <div class="indirect"></div> <!---- 移动小方块-->
+           </div>
+          
+           <div class="buy">
+               <p class="buy_title buy_title1"><b></b></p>
+               <p class="buy_title buy_title2"><b></b></p>
+               <p class="price"></p>
+               <p class="sequence">产品编号：36799602</p>
+               <p class="design"><img src=""/></p><!----------------------------套餐小图-->
+               <p class="design_color"></p>
+                <div class="buy_size">
+                    <p>尺码[法码]</p>
+                    <ul class="size_box">
+                        <li class="bgd">38</li>
+                        <li>39</li>
+                        <li>40</li>
+                        <li>41</li>
+                        <li>42</li>
+                        <li>43</li>
+                        <li>44</li>
+                    </ul>
+                </div>
+                <div class="count">
+                    <p class="count_title">数量</p>
+                    <p>
+                        <button class="minus">-</button>
+                        <input type="text" class="amount" value="1"/>
+                        <button class="add">+</button>
+                    </p>
+                    <a href="PUMA_trolley.html" class="addition">加入购物车</a>
+                </div>
+            </div>
+
+            <div class="small_box"><!--------------------小图-->
+                <ul class="small_img_box">
+                    <li><img src=""/></li>
+                    <li><img src=""/></li>
+                    <li><img src=""/></li>
+                    <li><img src=""/></li>
+                 </ul>
+            </div>
+       </div>
+
+       <div class="particulars_right">
+            <p class="particulars_right-title">你可能也喜欢</p>
+            <div class="likely likely1">
+                <img src=""/>
+            </div>
+            <div class="likely likely2">
+                <img src=""/>
+            </div>
+            <div class="likely likely3">
+                <img src=""/>
+            </div>
+       </div>
+
+       <div class="regard"><!--------------------商品简介选项卡未完成-->
+            <h1>广</h1>   
+            <h1>告</h1>
+            <h1>位</h1>
+            <h1>招</h1>
+            <h1>租</h1>
+        <div class="texture">
+
+        </div>
+        <div class="carriage">
+                
+        </div>
+       </div>
+    </div>
+            <div id="stern"></div>
+            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+            <script type="text/javascript">
+                $("#stern").load('PUMA_bottom.html');
+            </script>
+</body>
+</html>
+<script src="jquery.js"></script>
+<script>
+    function setCookie(_name,val,expires){ //-----------设置cookie
+		var d = new Date();
+		d.setDate(d.getDate()+expires);
+		document.cookie = _name+"="+val+";path=/;expires="+d;
+	}
+    //--------------------获取数据渲染放大镜
+    function getCookie(name){
+	    var cookie = document.cookie;
+	    var arr = cookie.split("; ");
+	    for(var i=0;i<arr.length;i++){
+	        var newArr = arr[i].split("=");
+	        if(name == newArr[0]){
+	            return newArr[1];
+	        }
+	    }
+	}
+    var apply = (function(){
+        var $id = getCookie('init');
+        $.post('php/PUMA_top.php',{id:$id},getBack,'json');
+            function getBack(json){
+                if(json.code == 200){
+                    var data = json.data;
+                    console.log(data);
+                    $('.projection > img').attr('src',data.img1);//放大图  透明去放大块
+                    $('.middle > img').attr('src',data.img1);// 中图  正常显示块
+                    $('.small_img_box > li > img').eq(0).attr('src',data.img1);
+                    $('.small_img_box > li > img').eq(1).attr('src',data.img2);
+                    $('.small_img_box > li > img').eq(2).attr('src',data.img3);
+                    $('.small_img_box > li > img').eq(3).attr('src',data.img4);
+                    $('.buy_title1 > b').html(data.English);
+                    $('.buy_title2 > b').html(data.Chinese);
+                    $('.price').html(data.money);
+                    $('.design > img').attr('src',data.combo);
+                    $('.design_color').html(data.colour);
+                    $('.likely1 > img').attr('src',data.img1);
+                    $('.likely2 > img').attr('src',data.img2);
+                    $('.likely3 > img').attr('src',data.img3);
+                }else{
+                    alert(json.msg);
+                }
+            }
+    })()
+ 
+    //----------------------放大镜放大操作
+    var magnifying = (function(){
+        var $small_img_box = $('.small_img_box');//小图的父级  用于委托
+        var $small_img_All = $('.small_img_box > li >img');//小图
+        var $middle = $('.middle');//中图 盒子
+        var $middle_img = $('.middle > img');// 中图
+        var $projection_img = $('.projection > img');// 大图
+        var $projection = $('.projection');//大图盒子
+        var $indirect = $('.indirect');//移动小方块
+        var $size_box = $('.size_box');//尺码
+        return {
+            init(){
+                this.entrust();
+                this.block_none();
+                this.magnifying();
+                this.colour();
+            },
+            entrust(){
+                $small_img_box.children('li').on('click',function(){
+                  var src = $(this).children('img').attr('src');
+                  $middle_img.attr('src',src);
+                  $projection_img.attr('src',src);
+                })
+            },
+            block_none(){
+                $middle.on('mouseover',function(){
+                    $indirect.css('display','block');
+                    $projection.css('display','block');
+                })
+                $middle.on('mouseout',function(){
+                    $indirect.css('display','none');
+                    $projection.css('display','none');
+                })
+            },
+            magnifying(){
+                
+                $middle.on('mousemove',function(e){
+                    e = e || event;
+                    var l = e.clientX - $middle.offset().left - parseInt($indirect.css('Width')) / 2;
+                    var t = e.clientY - $middle.offset().top - parseInt($indirect.css('Height')) / 2;
+                    var maxL = parseInt($middle.css('Width')) - parseInt($indirect.css('Width'));
+                    var maxT = parseInt($middle.css('Height')) - parseInt($indirect.css('Height'));
+                    if( l > maxL){
+                        l = maxL;
+                    }
+                    if( l < 0){
+                        l = 0;
+                    }
+                    if( t > maxT){
+                        t = maxT;
+                    }
+                    if( t < 0){
+                        t = 0;
+                    }
+                    $indirect.css('left', l + 'px');
+                    $indirect.css('top', t + 'px');
+                    $projection_img.css('left', l * -2 + 'px');
+                    $projection_img.css('top', t * -2 + 'px');
+                })
+
+            },
+            colour(){
+                $size_box.on('click','li',function(){
+                    $(this).addClass('bgd').siblings().removeClass('bgd');
+                })
+            }
+        }
+
+    })()
+    magnifying.init();
+
+    var reckon = (function(){ //-----------------数量增减
+        var $minus = $('.minus');
+        var $amount = $('.amount');
+        var $add = $('.add');
+        return {
+            init(){
+                this.events();
+            },
+            events(){
+                $minus.click(function(){
+                    var amount_val = $(this).next().val();
+                    if(amount_val != 0){
+                        amount_val--;
+                        $amount.val(amount_val);
+                    }
+                })
+                $add.click(function(){
+                    var amount_val = $(this).prev().val();
+                    amount_val++;
+                    $amount.val(amount_val);
+                })
+                $amount.blur(function(){
+                    var amount_val = $(this).val();
+                    $amount.val(amount_val);
+                })
+            }
+
+        }
+        
+    })()
+    reckon.init();
+    
+    $('.addition').click(function(){
+        var amount_val = $('.amount').val();
+        setCookie('amount',amount_val,7);
+    })
+         
+        
+</script>

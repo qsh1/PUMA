@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="PUMA_enroll_main.css"/>
+	</head>
+	<body>
+		<div id="header"></div>
+        <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+	        $("#header").load('PUMA_top.html');
+        </script>
+
+			
+			<div id="main">
+				<div class="establish">
+					<h1>创建账户</h1>
+					<p>标有<span>*</span>的所有项目均必须填写。</p>
+					<form>
+						<p><label><span>*</span>姓名</label></p>
+						<input type="text" name=""  placeholder="输入您的姓名" class="surname"/><span class="surname_hint"></span><br/>
+						<p><label><span>*</span>手机号码</label></p>
+						<input type="text" name="" placeholder="输入您的手机号码" class="phone"/><span class="phone_hint"></span><br/>
+						<p><label><span>*</span>密码</label></p>
+						<input type="password" name=""  placeholder="输入您的密码" class="password"/><span class="password_hint"></span><br/>
+						<p><label><span>*</span>确认密码</label></p>
+						<input type="password" name=""  placeholder="确认您的密码" class="affirm_password"/><span class="affirm_password_hint"></span><br/>
+						<p><label><span>*</span>邮箱</label></p>
+						<input type="email" name=""  placeholder="输入您的邮箱" class="postbox"/><span class="postbox_hint"></span><br/>
+						<p><label><span>*</span>性别</label></p>
+						<input type="text" name=""  placeholder="输入您的性别" class="sex"/><span class="sex_hint"></span><br/>
+						<a href="#" class="refer">提交</a>
+					</form>
+				</div>
+				
+			</div>
+		
+			<div id="stern"></div>
+            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+            <script type="text/javascript">
+                $("#stern").load('PUMA_bottom.html');
+            </script>
+	</body>
+</html>
+<script src="jquery.js"></script>
+<script>
+	var $surname = $('.surname');//------正则判断用户注册格式
+	var $phone = $('.phone');
+	var $password = $('.password');
+	var $affirm_password = $('.affirm_password');
+	var $postbox = $('.postbox');
+	var $refer = $('.refer');
+	var $sex = $('.sex');
+	var surname_reg = /^[\u4e00-\u9fa5]{2,4}$/;
+	var phone_reg = /^1[356789]\d{9}$/;
+	var password_reg = /^[A-Za-z]\w{10,16}$/;
+	var postbox_reg = /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/;
+	$surname.on('blur',function(){
+		if(surname_reg.test($surname.val())){
+			$('.surname_hint').html('输入正确!');
+			$('.surname_hint').css('color','seagreen');
+			$surname.css('background','#f1f1f1');
+		}else{
+			$('.surname_hint').html('输入错误!');
+			$('.surname_hint').css('color','#ff0000');
+			$surname.css('background','salmon');
+		}
+	})
+	$phone.on('blur',function(){
+		if(phone_reg.test($phone.val())){
+			$('.phone_hint').html('输入的格式正确!');
+			$('.phone_hint').css('color','seagreen');
+			$phone.css('background','#f1f1f1');
+		}else{
+			$('.phone_hint').html('输入的格式错误!');
+			$('.phone_hint').css('color','#ff0000');
+			$phone.css('background','salmon');
+		}
+	})
+	$password.on('blur',function(){
+		if(password_reg.test($password.val())){
+			$('.password_hint').html('输入的格式正确!');
+			$('.password_hint').css('color','seagreen');
+			$password.css('background','#f1f1f1');
+		}else{
+			$('.password_hint').html('输入的格式错误!');
+			$('.password_hint').css('color','#ff0000');
+			$password.css('background','salmon');
+		}
+	})
+	$affirm_password.on('blur',function(){
+		if($affirm_password.val() == $password.val() && $affirm_password.val() != ''){
+			$('.affirm_password_hint').html('输入一致!');
+			$('.affirm_password_hint').css('color','seagreen');
+			$affirm_password.css('background','#f1f1f1');
+		}else{
+			$('.affirm_password_hint').html('输入不一致!');
+			$('.affirm_password_hint').css('color','#ff0000');
+			$affirm_password.css('background','salmon');
+		}
+	})
+	$postbox.on('blur',function(){
+		if(postbox_reg.test($postbox.val())){
+			$('.postbox_hint').html('输入的格式正确!');
+			$('.postbox_hint').css('color','seagreen');
+			$postbox.css('background','#f1f1f1');
+		}else{
+			$('.postbox_hint').html('输入的格式错误!');
+			$('.postbox_hint').css('color','#ff0000');
+			$postbox.css('background','salmon');
+		}
+	})
+	$sex.on('blur',function(){
+		if($sex.val() == '男' || $sex.val() == '女'){
+			$('.sex_hint').html('输入正确!');
+			$('.sex_hint').css('color','seagreen');
+			$sex.css('background','#f1f1f1');
+		}else{
+			$('.sex_hint').html('输入错误!');
+			$('.sex_hint').css('color','#ff0000');
+			$sex.css('background','salmon');
+		}
+	})
+//------------------------------注册 往数据库提交新的账户信息
+	$refer.click(function(){
+		if((surname_reg.test($surname.val()))&&(phone_reg.test($phone.val()))&&(password_reg.test($password.val()))&&($affirm_password.val() == $password.val() && $affirm_password.val() != '')&&(postbox_reg.test($postbox.val()))&&($sex.val() == '男' || $sex.val() == '女')== true){
+			var params = {
+				surname : $surname.val(),
+				phone : $phone.val(),
+				password : $password.val(),
+				affirm_password : $affirm_password.val(),
+				postbox : $postbox.val(),
+				sex : $sex.val()
+			}
+			$.post('php/PUMA_entoll.php',params,getBack,'json');
+		}else{
+			alert('您输入的信息中有格式错误,请重新输入');
+		}
+	})
+	function getBack(json){
+		if(json.code == 200){
+			location.href = 'PUMA_register.html';
+		}else{
+			alert(json.msg);
+		}
+	}
+	
+</script>
